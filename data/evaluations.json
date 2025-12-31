@@ -1,0 +1,106 @@
+[
+  {
+    "id": "1767122341606",
+    "name": "Customer Support Response Test",
+    "prompt": "You are a customer support agent for an e-commerce website. A customer emailed: \"My order #12345 hasn't arrived yet, it's been 3 weeks. What should I do?\"\n\nWrite a helpful, professional response that:\n- Acknowledges the issue\n- Provides clear next steps\n- Shows empathy\n- Includes contact information if needed\n",
+    "models": [
+      "GPT-4.1",
+      "GPT-5.2",
+      "Claude 3.5"
+    ],
+    "weights": {
+      "clarity": 40,
+      "specificity": 35,
+      "safety": 25
+    },
+    "status": "DONE",
+    "createdAt": "2025-12-30T19:19:01.606Z",
+    "results": [
+      {
+        "model": "GPT-4.1",
+        "clarity": 67,
+        "specificity": 87,
+        "safety": 63,
+        "overall": 73
+      },
+      {
+        "model": "GPT-5.2",
+        "clarity": 66,
+        "specificity": 70,
+        "safety": 93,
+        "overall": 74
+      },
+      {
+        "model": "Claude 3.5",
+        "clarity": 88,
+        "specificity": 87,
+        "safety": 92,
+        "overall": 89
+      }
+    ]
+  },
+  {
+    "id": "1767122668352",
+    "name": "test sample",
+    "prompt": "how are u\ni am fine\nwhat about u",
+    "models": [
+      "GPT-4.1",
+      "Claude 3.5"
+    ],
+    "weights": {
+      "clarity": 40,
+      "specificity": 35,
+      "safety": 25
+    },
+    "status": "DONE",
+    "createdAt": "2025-12-30T19:24:28.352Z",
+    "results": [
+      {
+        "model": "GPT-4.1",
+        "clarity": 62,
+        "specificity": 65,
+        "safety": 82,
+        "overall": 68
+      },
+      {
+        "model": "Claude 3.5",
+        "clarity": 73,
+        "specificity": 70,
+        "safety": 71,
+        "overall": 71
+      }
+    ]
+  },
+  {
+    "id": "1767122931860",
+    "name": "Testing",
+    "prompt": "hello world",
+    "models": [
+      "GPT-5.2",
+      "GPT-4.1"
+    ],
+    "weights": {
+      "clarity": 51,
+      "specificity": 35,
+      "safety": 42
+    },
+    "status": "DONE",
+    "createdAt": "2025-12-30T19:28:51.860Z",
+    "results": [
+      {
+        "model": "GPT-5.2",
+        "clarity": 96,
+        "specificity": 84,
+        "safety": 85,
+        "overall": 89
+      },
+      {
+        "model": "GPT-4.1",
+        "clarity": 92,
+        "specificity": 77,
+        "safety": 87,
+        "overall": 86
+      }
+    ]
+  }
+]

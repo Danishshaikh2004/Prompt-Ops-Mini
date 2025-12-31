@@ -1,0 +1,36 @@
+[
+  {
+    "id": "9b76e366-e186-4d76-8f2a-d148766baace",
+    "name": "GPT-3.5 to GPT-4 Migration Test",
+    "sourceModel": "gpt-3.5",
+    "targetModel": "gpt-4",
+    "prompts": [
+      {
+        "source": "Write a creative story about a robot learning emotions"
+      },
+      {
+        "source": "Generate Python code for a simple calculator"
+      },
+      {
+        "source": "Explain quantum computing in simple terms"
+      }
+    ],
+    "status": "COMPLETED",
+    "createdAt": "2025-12-30T15:44:16.906Z",
+    "notes": "Testing the migration feature for assignment"
+  },
+  {
+    "id": "31044b12-818d-4091-9ee9-089d506782df",
+    "name": "ChatGPT Test",
+    "sourceModel": "gpt-4",
+    "targetModel": "claude-3",
+    "prompts": [
+      {
+        "source": "hello world"
+      }
+    ],
+    "status": "COMPLETED",
+    "createdAt": "2025-12-30T15:53:27.680Z",
+    "notes": ""
+  }
+]
