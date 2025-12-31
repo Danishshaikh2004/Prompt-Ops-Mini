@@ -26,7 +26,7 @@ export async function GET(
     }
 
     return NextResponse.json(migration);
-  } catch (err) {
+  } catch {
     return NextResponse.json(
       { error: "Failed to read migrations" },
       { status: 500 }

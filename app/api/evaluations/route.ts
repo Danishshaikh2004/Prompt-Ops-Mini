@@ -15,7 +15,7 @@ export async function GET(request: Request) {
   let evaluations = readEvaluations();
 
   if (search) {
-    evaluations = evaluations.filter(e =>
+    evaluations = evaluations.filter((e: Evaluation) =>
       e.name.toLowerCase().includes(search.toLowerCase()) ||
       e.prompt.toLowerCase().includes(search.toLowerCase())
     );
@@ -23,19 +23,19 @@ export async function GET(request: Request) {
 
   
   if (status) {
-    evaluations = evaluations.filter(e => e.status === status);
+    evaluations = evaluations.filter((e: Evaluation) => e.status === status);
   }
 
-  
+
   if (model) {
-    evaluations = evaluations.filter(e => e.models.includes(model));
+    evaluations = evaluations.filter((e: Evaluation) => e.models.includes(model));
   }
 
-  evaluations.sort((a, b) => {
-    let aValue: any, bValue: any;
+  evaluations.sort((a: Evaluation, b: Evaluation) => {
+    let aValue: number, bValue: number;
     if (sort === 'score') {
-      aValue = a.results ? Math.max(...a.results.map(r => r.overall)) : 0;
-      bValue = b.results ? Math.max(...b.results.map(r => r.overall)) : 0;
+      aValue = a.results ? Math.max(...a.results.map((r: { model: string; clarity: number; specificity: number; safety: number; overall: number }) => r.overall)) : 0;
+      bValue = b.results ? Math.max(...b.results.map((r: { model: string; clarity: number; specificity: number; safety: number; overall: number }) => r.overall)) : 0;
     } else {
       aValue = new Date(a.createdAt).getTime();
       bValue = new Date(b.createdAt).getTime();

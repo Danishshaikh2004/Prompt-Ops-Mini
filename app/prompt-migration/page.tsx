@@ -1,11 +1,11 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, Suspense } from "react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Migration } from "@/types";
 
-export default function PromptMigrationPage() {
+function PromptMigrationPageContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
 
@@ -24,7 +24,6 @@ export default function PromptMigrationPage() {
   }, [search, statusFilter, modelFilter, sortBy, sortOrder, page, pageSize]);
 
   useEffect(() => {
- 
     const params = new URLSearchParams();
     if (search) params.set("search", search);
     if (statusFilter) params.set("status", statusFilter);
@@ -66,7 +65,7 @@ export default function PromptMigrationPage() {
     if (confirm("Are you sure you want to delete this migration?")) {
       try {
         await fetch(`/api/migrations/${id}`, { method: 'DELETE' });
-        fetchMigrations(); 
+        fetchMigrations();
       } catch (error) {
         console.error("Failed to delete migration:", error);
       }
@@ -82,7 +81,6 @@ export default function PromptMigrationPage() {
       </Link>
 
       <br /><br />
-
 
       <div style={{ display: "flex", gap: "16px", marginBottom: "24px", flexWrap: "wrap", alignItems: "center" }}>
         <input
@@ -139,7 +137,7 @@ export default function PromptMigrationPage() {
 
       {migrations.length > 0 && (
         <>
-          <div style={{  backgroundColor: "#f8f9fa", overflowX: "auto", border: "1px solid  #dee2e6", borderRadius: "8px" , boxShadow: "0 2px 4px rgba(0, 0, 0, 0.05)"}}>
+          <div style={{ backgroundColor: "#f8f9fa", overflowX: "auto", border: "1px solid #dee2e6", borderRadius: "8px", boxShadow: "0 2px 4px rgba(0, 0, 0, 0.05)" }}>
             <table width="100%" cellPadding={16} style={{ borderCollapse: "collapse", fontSize: "14px" }}>
               <thead>
                 <tr style={{ backgroundColor: "#f8f9fa", borderBottom: "2px solid #dee2e6" }}>
@@ -239,7 +237,6 @@ export default function PromptMigrationPage() {
             </table>
           </div>
 
-
           <div style={{ marginTop: "24px", display: "flex", justifyContent: "center", gap: "16px" }}>
             <button
               onClick={() => setPage(Math.max(1, page - 1))}
@@ -258,5 +255,13 @@ export default function PromptMigrationPage() {
         </>
       )}
     </div>
+  );
+}
+
+export default function PromptMigrationPage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <PromptMigrationPageContent />
+    </Suspense>
   );
 }

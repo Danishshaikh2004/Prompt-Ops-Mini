@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { readMigrations, writeMigrations } from "@/lib/store";
+import { Migration } from "@/types";
 
 export async function POST(
   req: Request,
@@ -25,15 +26,15 @@ export async function POST(
 
   
   setTimeout(() => {
-    const updatedMigrations = readMigrations();
-    const updatedIndex = updatedMigrations.findIndex((m: any) => m.id === id);
+    const updatedMigrations: Migration[] = readMigrations();
+    const updatedIndex = updatedMigrations.findIndex((m: Migration) => m.id === id);
     if (updatedIndex !== -1) {
       updatedMigrations[updatedIndex].status = "COMPLETED";
-  
-      
-      updatedMigrations[updatedIndex].prompts = updatedMigrations[updatedIndex].prompts.map((p: any) => ({
-        source: typeof p === 'string' ? p : p.source,
-        migrated: typeof p === 'string' ? `${p} (migrated to ${updatedMigrations[updatedIndex].targetModel})` : p.migrated
+
+      updatedMigrations[updatedIndex].prompts = updatedMigrations[updatedIndex].prompts.map((p: { id: string; source: string; migrated?: string }) => ({
+        id: p.id,
+        source: p.source,
+        migrated: p.migrated || `${p.source} (migrated to ${updatedMigrations[updatedIndex].targetModel})`
       }));
       writeMigrations(updatedMigrations);
     }

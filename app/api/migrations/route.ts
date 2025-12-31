@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { readMigrations, writeMigrations } from "@/lib/store";
+import { Migration } from "@/types";
 import crypto from "crypto";
 
 export async function GET(req: Request) {
@@ -16,25 +17,25 @@ export async function GET(req: Request) {
 
   
   if (search) {
-    migrations = migrations.filter(m =>
+    migrations = migrations.filter((m: Migration) =>
       m.name.toLowerCase().includes(search.toLowerCase())
     );
   }
 
   
   if (status) {
-    migrations = migrations.filter(m => m.status === status);
+    migrations = migrations.filter((m: Migration) => m.status === status);
   }
 
   
   if (model) {
-    migrations = migrations.filter(m =>
+    migrations = migrations.filter((m: Migration) =>
       m.sourceModel === model || m.targetModel === model
     );
   }
 
   
-  migrations.sort((a, b) => {
+  migrations.sort((a: Migration, b: Migration) => {
     let aValue, bValue;
 
     if (sort === "name") {
